@@ -15,7 +15,7 @@ var angles = [];
 var size_angles = 1000;
 var index = 0;
 var vitesse_fractale_anim = 35;
-var taille_arbre = 100;
+var taille_arbre = 50;
 
 //Variables pour feu d'artificies
 var feux = [];
@@ -23,9 +23,13 @@ var proportion_feu = 0.1;
 var gravite;
 var force_gravite = 0.1;
 
- function preload(){ //Charge la police avant de lancer les animations
-    // font = loadFont('../ChunkFive-Regular.otf');
-  }
+//Variables pour le texte
+var taille_texte = 60;
+var opacite_text = 0;
+
+function preload(){ //Charge la police avant de lancer les animations
+    font = loadFont('./font/Bullpen3D.ttf')
+}
 
 function setup(){	
 	//Partie generale
@@ -46,15 +50,18 @@ function setup(){
   	gravite = createVector(0, force_gravite);
 
   	//Partie nom
-  	fSize = 256;
     textFont(font);
-    textSize(fSize);
+    textSize(taille_texte);
 	msg = "CECILE ARIOLI";
-    pts = font.textToPoints(msg, 0, 0, fSize, {
-        sampleFactor: 0.1, // increase for more points
-       	simplifyThreshold: 0.0 // increase to remove collinear points
+    points = font.textToPoints(msg, 0, 0, taille_texte, {
+        sampleFactor: 0.15, //Nombre de points echantillones
+       	simplifyThreshold: 0.0
     });
-    console.log(pts);
+    msg2 = "EPSAA PARIS";
+    points2 = font.textToPoints(msg2, 0, 0, taille_texte, {
+        sampleFactor: 0.15, //Nombre de points echantillones
+       	simplifyThreshold: 0.0
+    });
   }
 
   function draw(){
@@ -97,7 +104,7 @@ function setup(){
 		pop()
 	}
 
-	else if(frameCount < 1900){ //Puis on affiche les feux d'artifices pendant 9 secondes
+	else if(frameCount < 2000){ //Puis on affiche les feux d'artifices pendant 9 secondes
 		background(0);
 		//On creer directement nos feux ici aleatoirement, mais on arrete 
 		//d'en creer avant la fin pour meilleure transition
@@ -120,7 +127,43 @@ function setup(){
 			// textFont(font);
 			// text("CECILE ARIOLI", windowWidth/2-100, windowHeight/2-100);
 			// text("EPSAA PARIS", windowWidth/2-100, windowHeight/2-100+50);
-
+			if(frameCount < 1700){ //On gere l'opacite suivant le nombre de frame
+				opacite_text++;
+			}else{
+				opacite_text--;
+			}
+			push();
+		  	stroke(opacite_text,0,0);
+		    strokeWeight(2);
+		    noFill();
+		  	var d = 10 + sin(frameCount/50.) * 10; //Ici pour gerer l'animation, vitesse, largeur...
+		    var an = frameCount/100.;
+		    translate(windowWidth/4, windowHeight/2); //Ici on gere le placement du texte 1
+		    for (let i = 0; i < points.length; i++) {
+		        var point = points[i];
+		        push();
+		        translate(point.x, point.y);
+		        rotate(an);
+		        line(-d, -d, +d, +d);
+		        pop();
+		    }
+		    pop();
+		    push();
+		    stroke(opacite_text/2,opacite_text/2,0);
+		    strokeWeight(2);
+		    noFill();
+		  	d = 10 + sin(frameCount/50.) * 10; //Ici pour gerer l'animation, vitesse, largeur...
+		    an = frameCount/100.;
+		    translate(windowWidth/4, windowHeight/2+100); //Ici on gere le placement du texte 2
+		    for (let i = 0; i < points2.length; i++) {
+		        var point2 = points2[i];
+		        push();
+		        translate(point2.x, point2.y);
+		        rotate(an);
+		        line(-d, -d, +d, +d);
+		        pop();
+		    }
+		    pop();
 		}
 	}
 
