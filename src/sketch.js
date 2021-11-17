@@ -15,7 +15,7 @@ var angles = [];
 var size_angles = 1000;
 var index = 0;
 var vitesse_fractale_anim = 35;
-var taille_arbre = 150;
+var taille_arbre = 100;
 
 //Variables pour feu d'artificies
 var feux = [];
