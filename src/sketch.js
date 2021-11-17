@@ -19,7 +19,7 @@ var taille_arbre = 100;
 
 //Variables pour feu d'artificies
 var feux = [];
-var proportion_feu = 0.2;
+var proportion_feu = 0.17;
 var gravite;
 var force_gravite = 0.1;
 
@@ -140,7 +140,7 @@ function setup(){
 		    noFill();
 		  	var d = 10 + sin(frameCount/50.) * 10; //Ici pour gerer l'animation, vitesse, largeur...
 		    var an = frameCount/100.;
-		    translate(windowWidth/4, windowHeight/2); //Ici on gere le placement du texte 1
+		    translate(windowWidth/2-220, windowHeight/2); //Ici on gere le placement du texte 1
 		    for (let i = 0; i < points.length; i++) {
 		        var point = points[i];
 		        push();
@@ -156,7 +156,7 @@ function setup(){
 		    noFill();
 		  	d = 10 + sin(frameCount/50.) * 10; //Ici pour gerer l'animation, vitesse, largeur...
 		    an = frameCount/100.;
-		    translate(windowWidth/4, windowHeight/2+100); //Ici on gere le placement du texte 2
+		    translate(windowWidth/2-220, windowHeight/2+100); //Ici on gere le placement du texte 2
 		    for (let i = 0; i < points2.length; i++) {
 		        var point2 = points2[i];
 		        push();

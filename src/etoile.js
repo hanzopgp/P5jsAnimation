@@ -16,11 +16,19 @@ function Etoile(){
   };
 
   this.fade = function(){
-    this.duree_vie -= 3;
+    if(this.duree_vie <= 0){
+      this.duree_vie = 0;
+    }else{
+      this.duree_vie -= 3;
+    }
   };
 
   this.apparait = function(){
-    this.duree_vie += 3;
+    if(this.duree_vie >= 255){
+      this.duree_vie = 255;
+    }else{
+      this.duree_vie += 3;
+    }
   };
 
   this.show = function(){
