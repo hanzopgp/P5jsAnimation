@@ -39,12 +39,10 @@ function Particule(x, y, couleur, feu, acceleration_debris, bouquet_final){
   this.show = function(){
     if(!this.feu){ //Si c'est une particule debris
       strokeWeight(2); //Elle est petite
-      if(this.couleur == "rouge"){
-        stroke(color(this.duree_vie, 0, 0));
-      }else if(this.couleur == "jaune"){
-        stroke(color(this.duree_vie, this.duree_vie, 0));
-      }else{
-        stroke(color(0,0,this.duree_vie));
+      if(this.couleur == "blanc"){
+        stroke(color(this.duree_vie, this.duree_vie, this.duree_vie));
+      }else if(this.couleur == "rose"){
+        stroke(this.duree_vie*(R1/255),this.duree_vie*(R2/255),this.duree_vie*(R3/255));
       }
     }
 
@@ -55,13 +53,11 @@ function Particule(x, y, couleur, feu, acceleration_debris, bouquet_final){
       }else{
         strokeWeight(4); //Elle est plus grosse 
       }
-      if(this.couleur == "rouge"){
-        stroke(color(255,0,0));
+      if(this.couleur == "blanc"){
+        stroke(color(255,255,255));
       }
-      else if(this.couleur == "jaune"){
-        stroke(color(255,255,0));
-      }else{
-        stroke(color(0,0,255));
+      else if(this.couleur == "rose"){
+        stroke(color(R1,R2,R3));
       }
     }
 

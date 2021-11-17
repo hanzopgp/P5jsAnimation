@@ -11,9 +11,8 @@ var vitesse_etoiles = 15;
 let etoiles = [];
 
 //Variables pour les fractales
-var rouge_tmp = 0;
-var jaune_tmp = 0;
-var bleu_tmp = 0;
+var rose_tmp = 0;
+var blanc_tmp = 0;
 var angles = [];
 var size_angles = 1000;
 var index = 0;
@@ -32,6 +31,11 @@ var etincelle_proportion = 0.05;
 var taille_texte = 60;
 var opacite_text = 0;
 var vitesse_rotation_texte = 20.;
+
+//Variables couleurs
+var R1 = 235;
+var R2 = 164;
+var R3 = 235;
 
 function preload(){ //Charge la police avant de lancer les animations
     font = loadFont('./font/Bullpen3D.ttf')
@@ -86,22 +90,17 @@ function setup(){
 
 	else if(frameCount < 900){ //Ensuite on affiche les fractales pendant 5 secondes
 		if(frameCount < 600){ //On gere l'opacite suivant le nombre de frame
-			rouge_tmp++;
-			jaune_tmp++;
-			bleu_tmp++;
+			blanc_tmp++;
 		}else{
-			rouge_tmp--;
-			jaune_tmp--;
-			bleu_tmp--;
+			blanc_tmp--;
 		}
 		angle = angles[index];
 		index++;
 	  	background(0);
 	  	translate(windowWidth/2, height/2);
-	  	var rouge = color(rouge_tmp,0,0);
-	  	var bleu = color(bleu_tmp,0,0);
-	  	var jaune = color(jaune_tmp, jaune_tmp, 0);
-	  	stroke(bleu);
+	  	var rose = color(R1,R2,R3);
+	  	var blanc = color(blanc_tmp, blanc_tmp, blanc_tmp);
+	  	stroke(blanc);
 
 		push()
 		rotate(-90);
@@ -125,7 +124,7 @@ function setup(){
 		if(frameCount < 1500 && random(1) < proportion_feu){
 	    	feux.push(new Feu(false));
 	    }
-	    if(frameCount > 1700 && n_bouquet_final < 3){
+	    if(frameCount > 1750 && n_bouquet_final < 5){
 	    	feux.push(new Feu(true));
 	    	n_bouquet_final++;
 	    }
@@ -138,20 +137,13 @@ function setup(){
 			 }
 		}
 		if(frameCount > 1500){ //Pour les 2.5 dernieres secondes on affiche le nom
-			// var jaune = color(127,127,0);
-		  	// stroke(0);
-		  	// fill(jaune);
-			// textSize(30);
-			// textFont(font);
-			// text("CECILE ARIOLI", windowWidth/2-100, windowHeight/2-100);
-			// text("EPSAA PARIS", windowWidth/2-100, windowHeight/2-100+50);
 			if(frameCount < 1700){ //On gere l'opacite suivant le nombre de frame
 				opacite_text++;
 			}else{
 				opacite_text--;
 			}
 			push();
-		  	stroke(opacite_text,0,0);
+		  	stroke(opacite_text,opacite_text,opacite_text);
 		    strokeWeight(2);
 		    noFill();
 		  	var d = 10 + sin(frameCount/vitesse_rotation_texte) * 10; //Ici pour gerer l'animation, vitesse, largeur...
@@ -167,7 +159,7 @@ function setup(){
 		    }
 		    pop();
 		    push();
-		    stroke(0,0,opacite_text);
+		    stroke(opacite_text*(R1/255),opacite_text*(R2/255),opacite_text*(R3/255));
 		    strokeWeight(2);
 		    noFill();
 		  	d = 10 + sin(frameCount/vitesse_rotation_texte) * 10;
@@ -197,9 +189,9 @@ function branche(taille_arbre) {
 		push();
 		if(frameCount > 500 && frameCount < 700){
 			if(random(1) > etincelle_proportion){
-				stroke(255,0,0);
+				stroke(255,255,255);
 			}else{
-				stroke(0,0,255);
+				stroke(R1,R2,R3);
 			}
 		}
 		rotate(angle);

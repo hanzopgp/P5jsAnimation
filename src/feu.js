@@ -1,8 +1,8 @@
 function Feu(bouquet_final){
   if(random(1) > 0.5){
-    this.couleur = "rouge";
+    this.couleur = "blanc";
   }else{
-    this.couleur = "bleu";
+    this.couleur = "rose";
   }
   this.feu = new Particule(random(width), height, this.couleur, true, 0, bouquet_final);
   this.mort = false;

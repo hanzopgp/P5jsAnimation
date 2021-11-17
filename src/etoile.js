@@ -32,17 +32,17 @@ function Etoile(){
   };
 
   this.show = function(){
-    var red = color(this.duree_vie,0,0);
-    var yellow = color(this.duree_vie,this.duree_vie,0);
-    var bleu = color(0,0,this.duree_vie);
+    var blanc = color(this.duree_vie,this.duree_vie,this.duree_vie);
+    var rose = color(this.duree_vie*(R1/255),this.duree_vie*(R2/255),this.duree_vie*(R3/255));
 
-    fill(bleu);
+    fill(rose);
     noStroke();
 
     var sx = map(this.x/this.z, 0, 1, 0, width);
     var sy = map(this.y/this.z, 0, 1, 0, height);
 
     var rayon = map(this.z, 0, width, 16, 0);
+
     ellipse(sx, sy, rayon, rayon); //Ellipse
 
     var px = map(this.x/this.pz, 0, 1, 0, width);
@@ -50,7 +50,7 @@ function Etoile(){
 
     this.pz = this.z;
 
-    stroke(red);
+    stroke(blanc);
     line(px, py, sx, sy); //Ligne derriere l'ellipse
   };
 }

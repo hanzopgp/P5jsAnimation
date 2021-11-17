@@ -4,9 +4,10 @@ var windowWidth; //Largeur de la fenetre
 var windowHeight; //Hauteur de la fenetre
 var img_index = 0;
 var gif_rate = 20;
+var pause = false;
 
 //Variables fractales
-var type = "ronde"; //cerveau / eventail / quatre / ronde
+var type = "eventail"; //cerveau / eventail / quatre / ronde
 var angles = [];
 var size_angles = 396;
 var index = 0;
@@ -155,6 +156,19 @@ function draw(){
 	}
 }
 
+function keyPressed(){ //Fonction pour agir si il y a des actions au clavier
+	if(key == "p"){ //Met pause si on appuit sur la touche "p"
+		if(pause == false){
+			noLoop();
+			pause = true;
+		}
+		else{
+			loop();
+			pause = false;
+		}
+	}
+}
+
 //Applique les pointilles aux lignes
 function setLineDash(list) {
   drawingContext.setLineDash(list);
@@ -188,3 +202,4 @@ function branche(taille_arbre) {
 		pop();
 	}
 }
+
