@@ -34,8 +34,9 @@ function Etoile(){
   this.show = function(){
     var red = color(this.duree_vie,0,0);
     var yellow = color(this.duree_vie,this.duree_vie,0);
+    var bleu = color(0,0,this.duree_vie);
 
-    fill(red);
+    fill(bleu);
     noStroke();
 
     var sx = map(this.x/this.z, 0, 1, 0, width);
@@ -49,7 +50,7 @@ function Etoile(){
 
     this.pz = this.z;
 
-    stroke(yellow);
+    stroke(red);
     line(px, py, sx, sy); //Ligne derriere l'ellipse
   };
 }

@@ -13,12 +13,12 @@ let etoiles = [];
 //Variables pour les fractales
 var rouge_tmp = 0;
 var jaune_tmp = 0;
+var bleu_tmp = 0;
 var angles = [];
 var size_angles = 1000;
 var index = 0;
 var vitesse_fractale_anim = 20; //35
-var taille_arbre = 100; //80
-var etincelle_proportion = 0.05;
+var taille_arbre = 150; //80
 
 //Variables pour feu d'artificies
 var feux = [];
@@ -26,6 +26,7 @@ var proportion_feu = 0.17;
 var gravite;
 var force_gravite = 0.1;
 var n_bouquet_final = 0;
+var etincelle_proportion = 0.05;
 
 //Variables pour le texte
 var taille_texte = 60;
@@ -86,15 +87,21 @@ function setup(){
 	else if(frameCount < 900){ //Ensuite on affiche les fractales pendant 5 secondes
 		if(frameCount < 600){ //On gere l'opacite suivant le nombre de frame
 			rouge_tmp++;
+			jaune_tmp++;
+			bleu_tmp++;
 		}else{
 			rouge_tmp--;
+			jaune_tmp--;
+			bleu_tmp--;
 		}
 		angle = angles[index];
 		index++;
 	  	background(0);
 	  	translate(windowWidth/2, height/2);
 	  	var rouge = color(rouge_tmp,0,0);
-	  	stroke(rouge);
+	  	var bleu = color(bleu_tmp,0,0);
+	  	var jaune = color(jaune_tmp, jaune_tmp, 0);
+	  	stroke(bleu);
 
 		push()
 		rotate(-90);
@@ -160,7 +167,7 @@ function setup(){
 		    }
 		    pop();
 		    push();
-		    stroke(opacite_text,opacite_text,0);
+		    stroke(0,0,opacite_text);
 		    strokeWeight(2);
 		    noFill();
 		  	d = 10 + sin(frameCount/vitesse_rotation_texte) * 10;

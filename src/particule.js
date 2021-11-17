@@ -41,8 +41,10 @@ function Particule(x, y, couleur, feu, acceleration_debris, bouquet_final){
       strokeWeight(2); //Elle est petite
       if(this.couleur == "rouge"){
         stroke(color(this.duree_vie, 0, 0));
-      }else{
+      }else if(this.couleur == "jaune"){
         stroke(color(this.duree_vie, this.duree_vie, 0));
+      }else{
+        stroke(color(0,0,this.duree_vie));
       }
     }
 
@@ -56,8 +58,10 @@ function Particule(x, y, couleur, feu, acceleration_debris, bouquet_final){
       if(this.couleur == "rouge"){
         stroke(color(255,0,0));
       }
-      else{
+      else if(this.couleur == "jaune"){
         stroke(color(255,255,0));
+      }else{
+        stroke(color(0,0,255));
       }
     }
 
