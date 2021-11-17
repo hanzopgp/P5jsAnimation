@@ -2,6 +2,8 @@
 p5.disableFriendlyErrors = true; //Supprime les friendly errors de la console
 var frameCount; //Nombre de frame de l'animation
 var pause = false;
+var windowWidth;
+var windowHeight;
 
 //Variables pour etoiles
 var nb_etoiles = 500;
@@ -16,12 +18,14 @@ var size_angles = 1000;
 var index = 0;
 var vitesse_fractale_anim = 20; //35
 var taille_arbre = 100; //80
+var etincelle_proportion = 0.05;
 
 //Variables pour feu d'artificies
 var feux = [];
 var proportion_feu = 0.17;
 var gravite;
 var force_gravite = 0.1;
+var n_bouquet_final = 0;
 
 //Variables pour le texte
 var taille_texte = 60;
@@ -79,8 +83,8 @@ function setup(){
 		}
 	}
 
-	else if(frameCount < 990){ //Ensuite on affiche les fractales pendant 6.9 secondes
-		if(frameCount < 645){ //On gere l'opacite suivant le nombre de frame
+	else if(frameCount < 900){ //Ensuite on affiche les fractales pendant 5 secondes
+		if(frameCount < 600){ //On gere l'opacite suivant le nombre de frame
 			rouge_tmp++;
 		}else{
 			rouge_tmp--;
@@ -112,7 +116,11 @@ function setup(){
 		//On creer directement nos feux ici aleatoirement, mais on arrete 
 		//d'en creer avant la fin pour meilleure transition
 		if(frameCount < 1500 && random(1) < proportion_feu){
-	    	feux.push(new Feu());
+	    	feux.push(new Feu(false));
+	    }
+	    if(frameCount > 1700 && n_bouquet_final < 3){
+	    	feux.push(new Feu(true));
+	    	n_bouquet_final++;
 	    }
 	  	//La boucle est ici a l'envers car on supprime des elements a l'interieur
 	  	for(var i = feux.length-1; i >= 0; i--){ //On met a jour et affiche les feux
@@ -121,7 +129,7 @@ function setup(){
 			   if(feux[i].finit()){ //Si le feu a finit son animation
 			     feux.splice(i, 1); //Alors on supprime cet objet de la liste d'objet
 			 }
-			}
+		}
 		if(frameCount > 1500){ //Pour les 2.5 dernieres secondes on affiche le nom
 			// var jaune = color(127,127,0);
 		  	// stroke(0);
@@ -152,7 +160,7 @@ function setup(){
 		    }
 		    pop();
 		    push();
-		    stroke(opacite_text/2,opacite_text/2,0);
+		    stroke(opacite_text,opacite_text,0);
 		    strokeWeight(2);
 		    noFill();
 		  	d = 10 + sin(frameCount/vitesse_rotation_texte) * 10;
@@ -180,6 +188,27 @@ function branche(taille_arbre) {
 	translate(0, -taille_arbre);
 	if (taille_arbre > 4) {
 		push();
+		// if(frameCount > 500 && frameCount < 600){
+		// 	if(random(1) > etincelle_proportion){
+		// 		stroke(255,0,0);
+		// 	}else{
+		// 		stroke(255,255,0);
+		// 	}
+		// }
+		// if(frameCount > 600 && frameCount < 700){
+		// 	if(random(1) > etincelle_proportion/2){
+		// 		stroke(255,0,0);
+		// 	}else{
+		// 		stroke(0,255,255);
+		// 	}
+		// }
+		if(frameCount > 500 && frameCount < 700){
+			if(random(1) > etincelle_proportion){
+				stroke(255,0,0);
+			}else{
+				stroke(0,0,255);
+			}
+		}
 		rotate(angle);
 		branche(taille_arbre * 0.67);
 		pop();

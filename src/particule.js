@@ -1,10 +1,11 @@
-function Particule(x, y, couleur, feu, acceleration_debris){
+function Particule(x, y, couleur, feu, acceleration_debris, bouquet_final){
   this.position = createVector(x, y);
   this.feu = feu;
   this.duree_vie = 255; //Duree de vie a 255 pour jouer avec l'opacite
   this.couleur = couleur;
   this.acceleration = createVector(0, 0);
   this.acceleration_debris = acceleration_debris;
+  this.bouquet_final = bouquet_final;
 
   if(this.feu){ //Si la particule est un feu d'artifice
     this.vitesse = createVector(0, random(-12, -8)); //Vitesse negative pour que le feu monte vers le haut de l'ecran
@@ -43,16 +44,23 @@ function Particule(x, y, couleur, feu, acceleration_debris){
       }else{
         stroke(color(this.duree_vie, this.duree_vie, 0));
       }
-      //stroke(this.couleur, this.duree_vie); //Son opacite depend de sa duree de vie
-    }else{ //Si c'est une particule feu d'artifice
-      strokeWeight(4); //Elle est plus grosse 
+    }
+
+    else{ //Si c'est une particule feu d'artifice
+      if(this.bouquet_final == true){
+        strokeWeight(12); //Enorme bouquet final
+        this.acceleration_debris = 1;
+      }else{
+        strokeWeight(4); //Elle est plus grosse 
+      }
       if(this.couleur == "rouge"){
         stroke(color(255,0,0));
       }
       else{
-        stroke(color(127,127,0));
+        stroke(color(255,255,0));
       }
     }
+
     point(this.position.x, this.position.y);
   };
 }

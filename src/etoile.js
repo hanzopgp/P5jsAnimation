@@ -33,7 +33,7 @@ function Etoile(){
 
   this.show = function(){
     var red = color(this.duree_vie,0,0);
-    var yellow = color(this.duree_vie/2,this.duree_vie/2,0);
+    var yellow = color(this.duree_vie,this.duree_vie,0);
 
     fill(red);
     noStroke();
