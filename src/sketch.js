@@ -195,20 +195,6 @@ function branche(taille_arbre) {
 	translate(0, -taille_arbre);
 	if (taille_arbre > 4) {
 		push();
-		// if(frameCount > 500 && frameCount < 600){
-		// 	if(random(1) > etincelle_proportion){
-		// 		stroke(255,0,0);
-		// 	}else{
-		// 		stroke(255,255,0);
-		// 	}
-		// }
-		// if(frameCount > 600 && frameCount < 700){
-		// 	if(random(1) > etincelle_proportion/2){
-		// 		stroke(255,0,0);
-		// 	}else{
-		// 		stroke(0,255,255);
-		// 	}
-		// }
 		if(frameCount > 500 && frameCount < 700){
 			if(random(1) > etincelle_proportion){
 				stroke(255,0,0);
