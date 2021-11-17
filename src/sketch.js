@@ -23,6 +23,10 @@ var proportion_feu = 0.1;
 var gravite;
 var force_gravite = 0.1;
 
+ function preload(){ //Charge la police avant de lancer les animations
+    // font = loadFont('../ChunkFive-Regular.otf');
+  }
+
 function setup(){	
 	//Partie generale
 	createCanvas(windowWidth,windowHeight); //Canvas a la taille de la fenetre
@@ -40,6 +44,17 @@ function setup(){
 
   	//Partie feux d'artifices
   	gravite = createVector(0, force_gravite);
+
+  	//Partie nom
+  	fSize = 256;
+    textFont(font);
+    textSize(fSize);
+	msg = "CECILE ARIOLI";
+    pts = font.textToPoints(msg, 0, 0, fSize, {
+        sampleFactor: 0.1, // increase for more points
+       	simplifyThreshold: 0.0 // increase to remove collinear points
+    });
+    console.log(pts);
   }
 
   function draw(){
@@ -57,10 +72,8 @@ function setup(){
 	else if(frameCount < 990){ //Ensuite on affiche les fractales pendant 6.9 secondes
 		if(frameCount < 645){ //On gere l'opacite suivant le nombre de frame
 			rouge_tmp++;
-			jaune_tmp++;
 		}else{
 			rouge_tmp--;
-			jaune_tmp--;
 		}
 		angle = angles[index];
 		index++;
@@ -92,7 +105,7 @@ function setup(){
 	    	feux.push(new Feu());
 	    }
 	  	//La boucle est ici a l'envers car on supprime des elements a l'interieur
-	  	for(var i = feux.length - 1; i >= 0; i--){ //On met a jour et affiche les feux
+	  	for(var i = feux.length-1; i >= 0; i--){ //On met a jour et affiche les feux
 	  		feux[i].update();
 	  		feux[i].show();
 			   if(feux[i].finit()){ //Si le feu a finit son animation
@@ -100,12 +113,14 @@ function setup(){
 			 }
 			}
 		if(frameCount > 1500){ //Pour les 2.5 dernieres secondes on affiche le nom
-			var jaune = color(127,127,0);
-		  	stroke(0);
-		  	fill(jaune)
-			textSize(30);
-			text("CECILE ARIOLI", windowWidth/2-100, windowHeight/2-100);
-			text("EPSAA PARIS", windowWidth/2-100, windowHeight/2-100+50)
+			// var jaune = color(127,127,0);
+		  	// stroke(0);
+		  	// fill(jaune);
+			// textSize(30);
+			// textFont(font);
+			// text("CECILE ARIOLI", windowWidth/2-100, windowHeight/2-100);
+			// text("EPSAA PARIS", windowWidth/2-100, windowHeight/2-100+50);
+
 		}
 	}
 
