@@ -9,7 +9,7 @@ function Feu(){
   this.particules = [];
 
   this.finit = function(){
-    if(this.mort && this.particules.length === 0){
+    if(this.mort && this.particules.length === 0){ //Fonction pour savoir si le feu d'artifice est termine
       return true;
     }else{
       return false;
@@ -48,8 +48,8 @@ function Feu(){
 
   this.explose = function(){
     for(var i = 0; i < 100; i++){
-      var part = new Particule( this.feu.position.x, this.feu.position.y, this.couleur, false );
-      this.particules.push(part);
+      var debris = new Particule(this.feu.position.x, this.feu.position.y, this.couleur, false);
+      this.particules.push(debris);
     }
   };
 }
