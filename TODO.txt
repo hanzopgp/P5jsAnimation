@@ -1,4 +1,2 @@
-Il faut que les etoiles fade au debut
-Debug fade petite particule de la fin
 Animation du nom a la fin
 Choix des couleurs 

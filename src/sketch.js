@@ -46,16 +46,15 @@ function setup(){
 	if(frameCount < 300){ //Pendant les 3 premieres secondes on affiche les etoiles
 		background(0); //On remet le fond noir pour que les etoiles ne fasse pas de trace
 		for(let i = 0; i < nb_etoiles; i++) { //On met a jour les etoiles et on les affiche
+			if(frameCount > 220){
+				etoiles[i].fade();
+			}
 			etoiles[i].update(vitesse_etoiles);
 			etoiles[i].show();
 		}
 	}
 
-
-
 	else if(frameCount < 990){ //Ensuite on affiche les fractales pendant 6.9 secondes
-		
-		//Arbre general
 		if(frameCount < 645){ //On gere l'opacite suivant le nombre de frame
 			rouge_tmp++;
 			jaune_tmp++;
@@ -85,9 +84,7 @@ function setup(){
 		pop()
 	}
 
-
-
-	else if(frameCount < 1800){ //Puis on affiche les feux d'artifices pendant 8 secondes
+	else if(frameCount < 1900){ //Puis on affiche les feux d'artifices pendant 9 secondes
 		background(0);
 		//On creer directement nos feux ici aleatoirement, mais on arrete 
 		//d'en creer avant la fin pour meilleure transition
@@ -111,8 +108,6 @@ function setup(){
 			text("EPSAA PARIS", windowWidth/2-100, windowHeight/2-100+50)
 		}
 	}
-
-
 
 	else{ //A la fin on remet le fond en noir et on affiche plus rien
 		background(0);

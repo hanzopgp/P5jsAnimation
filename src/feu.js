@@ -1,12 +1,13 @@
 function Feu(){
   if(random(1) > 0.5){
-    this.couleur = color(255,0,0);
+    this.couleur = "rouge";
   }else{
-    this.couleur = color(127,127,0);
+    this.couleur = "jaune";
   }
   this.feu = new Particule(random(width), height, this.couleur, true);
   this.mort = false;
   this.particules = [];
+  this.acceleration_debris = random(0.6,0.9);
 
   this.finit = function(){
     if(this.mort && this.particules.length === 0){ //Fonction pour savoir si le feu d'artifice est termine
@@ -48,7 +49,7 @@ function Feu(){
 
   this.explose = function(){
     for(var i = 0; i < 100; i++){
-      var debris = new Particule(this.feu.position.x, this.feu.position.y, this.couleur, false);
+      var debris = new Particule(this.feu.position.x, this.feu.position.y, this.couleur, false, this.acceleration_debris);
       this.particules.push(debris);
     }
   };
