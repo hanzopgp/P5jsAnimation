@@ -14,8 +14,8 @@ var jaune_tmp = 0;
 var angles = [];
 var size_angles = 1000;
 var index = 0;
-var vitesse_fractale_anim = 35;
-var taille_arbre = 100;
+var vitesse_fractale_anim = 20; //35
+var taille_arbre = 100; //80
 
 //Variables pour feu d'artificies
 var feux = [];
@@ -26,6 +26,7 @@ var force_gravite = 0.1;
 //Variables pour le texte
 var taille_texte = 60;
 var opacite_text = 0;
+var vitesse_rotation_texte = 20.;
 
 function preload(){ //Charge la police avant de lancer les animations
     font = loadFont('./font/Bullpen3D.ttf')
@@ -106,7 +107,7 @@ function setup(){
 		pop()
 	}
 
-	else if(frameCount < 2000){ //Puis on affiche les feux d'artifices pendant 9 secondes
+	else if(frameCount < 1900){ //Puis on affiche les feux d'artifices pendant 9 secondes
 		background(0);
 		//On creer directement nos feux ici aleatoirement, mais on arrete 
 		//d'en creer avant la fin pour meilleure transition
@@ -138,9 +139,9 @@ function setup(){
 		  	stroke(opacite_text,0,0);
 		    strokeWeight(2);
 		    noFill();
-		  	var d = 10 + sin(frameCount/50.) * 10; //Ici pour gerer l'animation, vitesse, largeur...
+		  	var d = 10 + sin(frameCount/vitesse_rotation_texte) * 10; //Ici pour gerer l'animation, vitesse, largeur...
 		    var an = frameCount/100.;
-		    translate(windowWidth/2-220, windowHeight/2); //Ici on gere le placement du texte 1
+		    translate(windowWidth/2-220, windowHeight/2-100); //Ici on gere le placement du texte 1
 		    for (let i = 0; i < points.length; i++) {
 		        var point = points[i];
 		        push();
@@ -154,9 +155,9 @@ function setup(){
 		    stroke(opacite_text/2,opacite_text/2,0);
 		    strokeWeight(2);
 		    noFill();
-		  	d = 10 + sin(frameCount/50.) * 10; //Ici pour gerer l'animation, vitesse, largeur...
+		  	d = 10 + sin(frameCount/vitesse_rotation_texte) * 10;
 		    an = frameCount/100.;
-		    translate(windowWidth/2-220, windowHeight/2+100); //Ici on gere le placement du texte 2
+		    translate(windowWidth/2-220, windowHeight/2+100-100); //Ici on gere le placement du texte 2
 		    for (let i = 0; i < points2.length; i++) {
 		        var point2 = points2[i];
 		        push();
