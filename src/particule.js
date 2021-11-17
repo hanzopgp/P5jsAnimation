@@ -13,7 +13,7 @@ function Particule(x, y, couleur, feu, acceleration_debris){
     this.vitesse.mult(random(2, 10));
   }
 
-  this.update_acceleration = function(gravite) {
+  this.update_acceleration = function(gravite){
     this.acceleration.add(gravite); //On ajoute la gravite pour simuler l'effet que les particules retombent
   };
 

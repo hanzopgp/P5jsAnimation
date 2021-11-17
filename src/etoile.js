@@ -3,7 +3,7 @@ function Etoile(){
   this.y = random(-height, height);
   this.z = random(width);
   this.pz = this.z;
-  this.duree_vie = 255;
+  this.duree_vie = 0;
 
   this.update = function(speed){
     this.z = this.z - speed;
@@ -17,7 +17,11 @@ function Etoile(){
 
   this.fade = function(){
     this.duree_vie -= 3;
-  }
+  };
+
+  this.apparait = function(){
+    this.duree_vie += 3;
+  };
 
   this.show = function(){
     var red = color(this.duree_vie,0,0);

@@ -4,8 +4,8 @@ var frameCount; //Nombre de frame de l'animation
 var pause = false;
 
 //Variables pour etoiles
-var nb_etoiles = 300;
-var vitesse_etoiles = 10;
+var nb_etoiles = 500;
+var vitesse_etoiles = 15;
 let etoiles = [];
 
 //Variables pour les fractales
@@ -15,11 +15,11 @@ var angles = [];
 var size_angles = 1000;
 var index = 0;
 var vitesse_fractale_anim = 35;
-var taille_arbre = 50;
+var taille_arbre = 100;
 
 //Variables pour feu d'artificies
 var feux = [];
-var proportion_feu = 0.1;
+var proportion_feu = 0.2;
 var gravite;
 var force_gravite = 0.1;
 
@@ -70,6 +70,8 @@ function setup(){
 		for(let i = 0; i < nb_etoiles; i++) { //On met a jour les etoiles et on les affiche
 			if(frameCount > 220){
 				etoiles[i].fade();
+			}else{
+				etoiles[i].apparait();
 			}
 			etoiles[i].update(vitesse_etoiles);
 			etoiles[i].show();
