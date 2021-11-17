@@ -124,7 +124,7 @@ function setup(){
 		if(frameCount < 1500 && random(1) < proportion_feu){
 	    	feux.push(new Feu(false));
 	    }
-	    if(frameCount > 1700 && n_bouquet_final < 5){
+	    if(frameCount > 1710 && n_bouquet_final < 5){
 	    	feux.push(new Feu(true));
 	    	n_bouquet_final++;
 	    }
